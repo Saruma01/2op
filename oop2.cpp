@@ -37,43 +37,27 @@ public:
     void colored();
 };
 
-class Dress : public Clother {
+class Shoes {
 public:
-    int leng;
-    string type;
+    Clother* a1;
 
-    Dress() : Clother() {
-        cout << "Dress() : Clother()\n";
-        leng = 0;
-        type = "";
+    Shoes() {
+        cout << "Shoes()\n";
+        a1 = new Clother;
     }
-    Dress(int size, string color, string gender, int leng, string type): Clother (size,color,gender) {
-        cout << " Dress(int size, string color, string gender, int leng, string type): Clother (size,color,gender)\n";
-        this->leng = leng;
-        this->type = type;
-        
+    Shoes(int size1, string color1, string gender1) {
+        cout << "Shoes(int size1, string color1, string gender1)\n";
+        a1 = new Clother(size1,color1,gender1);
     }
-    Dress(const Dress& p) {
-        cout << " Dress(const  Dress &p)\n";
-        size = p.size;
-        color = p.color;
-        gender = p.gender;
-        leng = p.leng;
-        type = p.type;
+    Shoes(const Shoes& p) {
+        cout << "Shoes(const Clother &p)\n";
+        a1 = new Clother(*(p.a1));
     }
-    ~Dress() {
-        cout << "~ Dress()\n";
-        cout << "size: " << size <<  ", leng: " << leng << ", gender: " << gender << ", type: " << type << endl;
-    }
-    void print_clothers() const {
-
-        cout << "size: " << size << ", color: " << color << ", gender: " << gender << endl;
+    ~Shoes() {
+        cout << "~Shoes()\n";
+        delete a1;
     }
 };
-
-
-
-
 void Clother::colored() {
     color = "orange";
     gender = "male";
@@ -81,9 +65,12 @@ void Clother::colored() {
 int main()
 {   
     
-    Clother *c2 = new Dress(12, "green", "female", 45, "office_dress");
+    Shoes *c2 = new Shoes();
+    Shoes* c3 = new Shoes(*c2);
     delete c2;
+    delete c3;
 }
+
 
 
 
