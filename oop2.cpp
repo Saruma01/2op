@@ -80,14 +80,11 @@ void Clother::colored() {
 }
 int main()
 {   
-    Dress c1;
-    Dress *c2 = new Dress(12, "green", "female", 45, "office_dress");
-    Dress* c3 = new Dress(*c2);
-    c3->colored();
-
+    
+    Clother *c2 = new Dress(12, "green", "female", 45, "office_dress");
     delete c2;
-    delete c3;
 }
+
 
 
 
