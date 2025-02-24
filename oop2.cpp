@@ -5,7 +5,6 @@ public:
     int size;
 protected:    
     string gender;
-private:
     string color;
 public:
     Clother() {
@@ -37,23 +36,58 @@ public:
 
     void colored();
 };
+
+class Dress : public Clother {
+public:
+    int leng;
+    string type;
+
+    Dress() : Clother() {
+        cout << "Dress() : Clother()\n";
+        leng = 0;
+        type = "";
+    }
+    Dress(int size, string color, string gender, int leng, string type): Clother (size,color,gender) {
+        cout << " Dress(int size, string color, string gender, int leng, string type): Clother (size,color,gender)\n";
+        this->leng = leng;
+        this->type = type;
+        
+    }
+    Dress(const Dress& p) {
+        cout << " Dress(const  Dress &p)\n";
+        size = p.size;
+        color = p.color;
+        gender = p.gender;
+        leng = p.leng;
+        type = p.type;
+    }
+    ~Dress() {
+        cout << "~ Dress()\n";
+        cout << "size: " << size <<  ", leng: " << leng << ", gender: " << gender << ", type: " << type << endl;
+    }
+    void print_clothers() const {
+
+        cout << "size: " << size << ", color: " << color << ", gender: " << gender << endl;
+    }
+};
+
+
+
+
 void Clother::colored() {
     color = "orange";
     gender = "male";
 }
 int main()
 {   
-    Clother a1;
-    Clother a2(42,"red","female");
-    Clother a3(a2);
-    
-    Clother *b1 = new Clother();
-    Clother *b2 = new Clother(34, "blue", "male");
-    Clother *b3 = new Clother(*b2);
-    b1->colored();
-    delete b1;
-    delete b2;
-    delete b3;
+    Dress c1;
+    Dress *c2 = new Dress(12, "green", "female", 45, "office_dress");
+    Dress* c3 = new Dress(*c2);
+    c3->colored();
+
+    delete c2;
+    delete c3;
 }
+
 
 
