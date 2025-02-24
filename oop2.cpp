@@ -3,8 +3,11 @@ using namespace std;
 class Clother {
 public:
     int size;
-    string color, gender;
-
+protected:    
+    string gender;
+private:
+    string color;
+public:
     Clother() {
         cout << "Clother()\n";
         size = 0;
@@ -30,18 +33,27 @@ public:
     void print_clothers() const {
 
         cout << "size: " << size << ", color: " << color << ", gender: " << gender << endl;
-
     }
-};
 
+    void colored();
+};
+void Clother::colored() {
+    color = "orange";
+    gender = "male";
+}
 int main()
 {   
-    Clother *a1 = new Clother();
-    Clother *a2 = new Clother(42,"red","female");
-    Clother *a3 = new Clother(*a2);
+    Clother a1;
+    Clother a2(42,"red","female");
+    Clother a3(a2);
     
-    delete a1;
-    delete a2;
-    delete a3;
+    Clother *b1 = new Clother();
+    Clother *b2 = new Clother(34, "blue", "male");
+    Clother *b3 = new Clother(*b2);
+    b1->colored();
+    delete b1;
+    delete b2;
+    delete b3;
 }
+
 
